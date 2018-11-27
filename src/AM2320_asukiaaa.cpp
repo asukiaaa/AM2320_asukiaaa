@@ -27,32 +27,20 @@ int AM2320::update() {
   for(int s = 0; s < 8; s++) buf[s] = 0x00;
 
   myWire->beginTransmission(AM2320_ADDRESS);
-  if (myWire->endTransmission() != 0) {
-    // Serial.print("error after wakingup");
-    Wire.reset();
-    return 1;
-  }
-  delay(15);
+  myWire->endTransmission();
   myWire->beginTransmission(AM2320_ADDRESS);
   myWire->write(0x03);
   myWire->write(0x00);
   myWire->write(0x04);
-  if (myWire->endTransmission(false) != 0) {
-    // Serial.print("error after transmission");
+  if (myWire->endTransmission(true) != 0) {
+    // Serial.println("error after transmission");
     Wire.reset();
     return 1;
   }
   delayMicroseconds(1600); // >1.5ms
   myWire->requestFrom(AM2320_ADDRESS, 0x08);
   for (int i = 0; i < 0x08; i++) {
-    if (myWire->available()) {
-      buf[i] = myWire->read();
-      // Serial.print(buf[i], HEX);
-      // Serial.print(' ');
-    } else {
-      return 1;
-      // Serial.print("error at reading");
-    }
+    buf[i] = myWire->read();
   }
 
   // Fusion Code check
