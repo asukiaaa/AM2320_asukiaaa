@@ -32,11 +32,7 @@ int AM2320::update() {
   myWire->write(0x03);
   myWire->write(0x00);
   myWire->write(0x04);
-  if (myWire->endTransmission(true) != 0) {
-    // Serial.println("error after transmission");
-    Wire.reset();
-    return 1;
-  }
+  myWire->endTransmission(true);
   delayMicroseconds(1600); // >1.5ms
   myWire->requestFrom(AM2320_ADDRESS, 0x08);
   for (int i = 0; i < 0x08; i++) {
