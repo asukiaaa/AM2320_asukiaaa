@@ -28,6 +28,7 @@ int AM2320::update() {
 
   myWire->beginTransmission(AM2320_ADDRESS);
   myWire->endTransmission();
+  delay(10);
   myWire->beginTransmission(AM2320_ADDRESS);
   myWire->write(0x03);
   myWire->write(0x00);
