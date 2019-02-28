@@ -30,9 +30,9 @@ int AM2320::update() {
   myWire->endTransmission();
   delay(10);
   myWire->beginTransmission(AM2320_ADDRESS);
-  myWire->write(0x03);
-  myWire->write(0x00);
-  myWire->write(0x04);
+  myWire->write((unsigned char) 0x03);
+  myWire->write((unsigned char) 0x00);
+  myWire->write((unsigned char) 0x04);
   if (myWire->endTransmission(true) != 0) {
     return 1;
   }
