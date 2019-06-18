@@ -16,13 +16,13 @@ unsigned int CRC16(byte *ptr, unsigned int length) {
   return crc;
 }
 
-AM2320::AM2320() {}
+AM2320_asukiaaa::AM2320_asukiaaa() {}
 
-void AM2320::setWire(TwoWire* wire) {
+void AM2320_asukiaaa::setWire(TwoWire* wire) {
   myWire = wire;
 }
 
-int AM2320::update() {
+int AM2320_asukiaaa::update() {
   byte buf[8];
   for(int s = 0; s < 8; s++) buf[s] = 0x00;
 

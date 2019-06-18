@@ -1,6 +1,6 @@
 #include <AM2320_asukiaaa.h>
 
-AM2320 mySensor;
+AM2320_asukiaaa mySensor;
 
 void setup() {
   while(!Serial);

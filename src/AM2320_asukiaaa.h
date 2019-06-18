@@ -6,9 +6,9 @@
 
 #define AM2320_ADDRESS 0x5C // (0xB8 >> 1)
 
-class AM2320 {
+class AM2320_asukiaaa {
   public:
-  AM2320();
+  AM2320_asukiaaa();
   void setWire(TwoWire *wire);
   int update();
   float temperatureC;
