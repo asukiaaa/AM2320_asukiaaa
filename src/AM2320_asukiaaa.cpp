@@ -1,7 +1,7 @@
 #include "AM2320_asukiaaa.h"
 
-unsigned int CRC16(byte *ptr, unsigned int length) {
-  unsigned int crc = 0xFFFF;
+uint16_t CRC16(byte *ptr, uint8_t length) {
+  uint16_t crc = 0xFFFF;
   uint8_t s = 0x00;
 
   while(length--) {
@@ -48,7 +48,7 @@ AM2320_asukiaaa::Errors AM2320_asukiaaa::update() {
   if (buf[0] != 0x03) return Errors::FUSION_CODE_UNMATCH;
 
   // CRC check
-  unsigned int Rcrc = buf[7] << 8;
+  uint16_t Rcrc = buf[7] << 8;
   Rcrc += buf[6];
   if (Rcrc != CRC16(buf, 6)) return Errors::CRC_UNMATCH;
 
