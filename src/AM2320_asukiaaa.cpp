@@ -23,8 +23,8 @@ void AM2320_asukiaaa::setWire(TwoWire* wire) {
 }
 
 int AM2320_asukiaaa::update() {
-  byte buf[8];
-  for(int s = 0; s < 8; s++) buf[s] = 0x00;
+  static const int buffLen = 8;
+  byte buf[buffLen];
 
   myWire->beginTransmission(AM2320_ADDRESS);
   myWire->endTransmission();
@@ -37,8 +37,8 @@ int AM2320_asukiaaa::update() {
     return 1;
   }
   delayMicroseconds(1600); // >1.5ms
-  myWire->requestFrom(AM2320_ADDRESS, 0x08);
-  for (int i = 0; i < 0x08; i++) {
+  myWire->requestFrom(AM2320_ADDRESS, buffLen);
+  for (uint8_t i = 0; i < buffLen; ++i) {
     buf[i] = myWire->read();
   }
 
@@ -50,12 +50,12 @@ int AM2320_asukiaaa::update() {
   Rcrc += buf[6];
   if (Rcrc != CRC16(buf, 6)) return 2;
 
-  unsigned int t = ((buf[4] & 0x7F) << 8) + buf[5];
+  uint16_t t = (((uint16_t) buf[4] & 0x7F) << 8) | buf[5];
   temperatureC = t / 10.0;
   temperatureC = ((buf[4] & 0x80) >> 7) == 1 ? temperatureC * (-1) : temperatureC;
   temperatureF = temperatureC * 9 / 5 + 32;
 
-  unsigned int h = (buf[2] << 8) + buf[3];
+  uint16_t h = ((uint16_t) buf[2] << 8) | buf[3];
   humidity = h / 10.0;
 
   return 0;
