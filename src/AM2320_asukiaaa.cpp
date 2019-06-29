@@ -16,7 +16,9 @@ uint16_t CRC16(byte *ptr, uint8_t length) {
   return crc;
 }
 
-AM2320_asukiaaa::AM2320_asukiaaa() {}
+AM2320_asukiaaa::AM2320_asukiaaa() {
+  myWire = &Wire;
+}
 
 void AM2320_asukiaaa::setWire(TwoWire* wire) {
   myWire = wire;
