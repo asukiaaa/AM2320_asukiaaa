@@ -14,8 +14,6 @@
 #include <Arduino.h>
 #include <Wire.h>
 
-#define Errors 1
-
 class AM2320_asukiaaa {
   public:
   AM2320_asukiaaa();
