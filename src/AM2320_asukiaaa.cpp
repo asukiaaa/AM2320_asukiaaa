@@ -36,7 +36,7 @@ int AM2320_asukiaaa::update() {
   if (myWire->endTransmission(true) != 0) {
     return 1;
   }
-  delayMicroseconds(1600); // >1.5ms
+  delay(2); // >1.5ms
   myWire->requestFrom(AM2320_ADDRESS, buffLen);
   for (uint8_t i = 0; i < buffLen; ++i) {
     buf[i] = myWire->read();
