@@ -1,6 +1,6 @@
 #include "AM2320_asukiaaa.h"
 
-uint16_t CRC16(byte *ptr, uint8_t length) {
+uint16_t CRC16(uint8_t *ptr, uint8_t length) {
   uint16_t crc = 0xFFFF;
   uint8_t s = 0x00;
 
@@ -26,7 +26,7 @@ void AM2320_asukiaaa::setWire(TwoWire* wire) {
 
 int AM2320_asukiaaa::update() {
   static const int buffLen = 8;
-  byte buf[buffLen];
+  uint8_t buf[buffLen];
 
   // Wakeup sensor
   myWire->beginTransmission(AM2320_asukiaaa_DEVICE_ADDRESS);
