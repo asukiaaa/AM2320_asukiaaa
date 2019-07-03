@@ -37,7 +37,7 @@ int AM2320_asukiaaa::update() {
   myWire->write((unsigned char) 0x03);
   myWire->write((unsigned char) 0x00);
   myWire->write((unsigned char) 0x04);
-  int result = myWire->endTransmission(true);
+  int result = myWire->endTransmission();
   if (result != AM2320_asukiaaa_SUCCESS) return result;
   delay(2); // >1.5ms
   myWire->requestFrom(AM2320_asukiaaa_DEVICE_ADDRESS, buffLen);
