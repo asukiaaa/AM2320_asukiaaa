@@ -3,8 +3,8 @@
 AM2320_asukiaaa mySensor;
 
 void setup() {
-  while(!Serial);
   Serial.begin(115200);
+  while(!Serial);
   Serial.println("started");
   Wire.begin();
   mySensor.setWire(&Wire);
