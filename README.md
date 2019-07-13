@@ -6,6 +6,10 @@ A library to get data from AM2320(CM2320) temperature and humidity sensor.
 
 See [GetData on examples](examples/GetData/GetData.ino).
 
+# License
+
+MIT
+
 # References
 
 - [温湿度センサ モジュール AM2320](http://akizukidenshi.com/catalog/g/gM-08663/)
